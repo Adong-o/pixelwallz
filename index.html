@@ -21,72 +21,53 @@
   gtag('config', 'G-43VSS8DN4M');
 </script>
 <body>
-    <!--hero section-->
-    <div class="hero-section">
-        <div class="content">
-            <img src="https://i.postimg.cc/bNZnGJYf/asro-removebg-preview.png" alt="Astronaut" class="astronaut">
-            <div class="overlay">
-                <div class="arrow"></div>
-                <div class="text">
-                    <h1><a href="https://x.com/panels_art" target="_blank">@panels.art</a> knockoff</h1>
-                    <p>Explore high-quality HD and 4K wallpapers inspired by Panels.art, with a simpler, no-signup approach. Browse, search, and download stunning wallpapers directly from your browser for quick, hassle-free access.</p>
+    
+        <section class="hero-section">
+            <div class="hero-content">
+                <img src="https://i.postimg.cc/bNZnGJYf/asro-removebg-preview.png" alt="Astronaut" class="astronaut-img">
+                <div class="hero-text">
+                    <h1>ImageOasis</h1>
+                    <p>Explore high-quality HD and 4K wallpapers with a simple, no-signup approach. Browse, search, and download stunning wallpapers directly from your browser.</p>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!--categories-->
-    <div class="img-gallery-container">
-        <div class="img-gallery-wrapper">
-            <div class="img-gallery-section" id="pexelsSection">
-                <h2>!!!!!!!!!!!!!!!!!!!!!!🙌</h2>
-                <div class="img-search-container">
-                    <input type="text" id="pexelsSearch" placeholder="Search for images...">
-                    <button id="pexelsSearchBtn">Search</button>
-                </div>
-                <div class="img-category-buttons">
-                    <button class="img-category-button" data-category="nature wallpapers">Nature</button>
-                    <button class="img-category-button" data-category="buildings wallpapers">Buildings</button>
-                    <button class="img-category-button" data-category="future technology">Future Technology</button>
-                    <button class="img-category-button" data-category="cities">Cities</button>
-                    <button class="img-category-button" data-category="wallpapers">Wallpapers</button>
-                </div>
-                <div id="pexelsImageContainer" class="img-container"></div>
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for any type of wallpaper...">
+                <button class="search-button" id="searchBtn">Search</button>
             </div>
-            <div class="img-gallery-section" id="dalleSection">
-                <h2> Generated Images</h2>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                <div class="coming-soon">
-                    <h3>Coming Soon</h3>
-                    <p>Get ready for some AI-generated awesomeness!</p>
-                </div>
+            <div class="categories">
+                <button class="category-btn" data-category="minimalist">Minimalist</button>
+                <button class="category-btn" data-category="abstract">Abstract</button>
+                <button class="category-btn" data-category="nature">Nature</button>
+                <button class="category-btn" data-category="space">Space</button>
+                <button class="category-btn" data-category="cyberpunk">Cyberpunk</button>
+                <button class="category-btn" data-category="geometric">Geometric</button>
+                <button class="category-btn" data-category="dark">Dark</button>
+                <button class="category-btn" data-category="neon">Neon</button>
+                <button class="category-btn" data-category="architecture">Architecture</button>
+                <button class="category-btn" data-category="fantasy">Fantasy</button>
             </div>
+        </section>
+
+        <section class="gallery-container" id="imageGallery">
+            <!-- Images will be loaded here -->
+        </section>
+
+        <div class="loader" id="loader" style="display: none;">
+            Loading more images...
         </div>
-        <div class="img-section-toggle">
-            <button id="imgToggleSection">Generate Your Wallpaper</button>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>About ImageOasis</h3>
+            <p>We provide a curated collection of stunning images from various sources. Our mission is to make beautiful wallpapers accessible to everyone.</p>
+            <p>Follow us on X: <a href="https://x.com/AdongoJakes" class="social-link" target="_blank">@AdongoJakes</a></p>
+            <p>&copy; 2024 ImageOasis. All rights reserved.</p>
         </div>
-    </div>
-
-
-
-
-   <!--footer-->
-   <footer class="site-footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h3>About Us</h3>
-            <p>We provide a curated collection of stunning images from Pexels. Generative images are coming soon! We're seeking help to acquire the API from Leonardo.</p>
-            <p>Reach out on X: <a href="https://x.com/AdongoJakes" class="twitter-link" target="_blank">Jakes Adongo</a></p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 ImageOasis. All rights reserved.</p>
-    </div>
-</footer>
+    </footer>
 
     <script src="main.js"></script>
 </body>
