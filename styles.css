@@ -107,6 +107,7 @@ body {
     color: #fff;
     min-height: 50vh; 
     display: flex;
+    font-family: Oswald;
     align-items: center; 
     justify-content: center; 
     text-align: center;
