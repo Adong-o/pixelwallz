@@ -192,3 +192,89 @@ document.querySelectorAll('.category-btn').forEach(button => {
 
 window.addEventListener('scroll', handleScroll);
 fetchImages('wallpaper');
+
+
+
+//modal for submissions ans upload
+
+// Modal handling
+const uploadModal = document.getElementById('uploadModal');
+const galleryModal = document.getElementById('galleryModal');
+const uploadBtn = document.getElementById('uploadBtn');
+const userGalleryBtn = document.getElementById('userGalleryBtn');
+const closeBtns = document.querySelectorAll('.close-btn');
+const uploadForm = document.getElementById('imageUploadForm');
+
+// Open modals
+uploadBtn.addEventListener('click', () => {
+    uploadModal.style.display = 'block';
+});
+
+userGalleryBtn.addEventListener('click', () => {
+    galleryModal.style.display = 'block';
+    loadUserSubmissions();
+});
+
+// Close modals
+closeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        uploadModal.style.display = 'none';
+        galleryModal.style.display = 'none';
+    });
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === uploadModal || e.target === galleryModal) {
+        uploadModal.style.display = 'none';
+        galleryModal.style.display = 'none';
+    }
+});
+
+// Handle form submission
+uploadForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(uploadForm);
+    
+    try {
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+        
+        if (response.ok) {
+            alert('Images uploaded successfully!');
+            uploadForm.reset();
+            uploadModal.style.display = 'none';
+        } else {
+            alert('Error uploading images. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error uploading images. Please try again.');
+    }
+});
+
+// Load user submissions
+async function loadUserSubmissions() {
+    const galleryContainer = document.getElementById('userGalleryContainer');
+    
+    try {
+        const response = await fetch('/api/submissions');
+        const data = await response.json();
+        
+        galleryContainer.innerHTML = '';
+        
+        data.forEach(submission => {
+            submission.images.forEach(image => {
+                const img = document.createElement('img');
+                img.src = image.url;
+                img.alt = `Submitted by ${submission.name}`;
+                galleryContainer.appendChild(img);
+            });
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        galleryContainer.innerHTML = '<p>Error loading submissions. Please try again.</p>';
+    }
+}
