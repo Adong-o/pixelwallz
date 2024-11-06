@@ -278,3 +278,6 @@ async function loadUserSubmissions() {
         galleryContainer.innerHTML = '<p>Error loading submissions. Please try again.</p>';
     }
 }
+
+
+//updated to take the images to the backend
