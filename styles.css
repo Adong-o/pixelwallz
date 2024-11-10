@@ -12,6 +12,32 @@ body {
     overflow-x: hidden;
 }
 
+/* Add this to your existing styles.css */
+.load-more-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    background: #ff007a;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.load-more-btn:hover {
+    transform: translateY(-2px);
+    background: #ff1a8c;
+}
+
+.load-more-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .download-modal {
     display: none;
     position: fixed;
