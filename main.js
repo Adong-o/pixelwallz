@@ -1,3 +1,4 @@
+
 // API and DOM Elements
 const apiKey = '9v33NRbeI7fMxBXA84i2OX4naXhDVPHv0JC7CEQMdIFYdfJ6tcYv4Wps';
 const gallery = document.getElementById('imageGallery');
@@ -13,13 +14,25 @@ const userGalleryBtn = document.getElementById('userGalleryBtn');
 const closeBtns = document.querySelectorAll('.close-btn');
 const uploadForm = document.getElementById('imageUploadForm');
 
+// Categories Configuration
+const CATEGORIES = [
+    'cities', 'wallpapers', 'dark', 'mountains', 'beaches', 'food', 'animals', 'sports', 'cars', 'gaming',
+     'Berlin', 'malaysia', 'insects', 'futuristic', 'grafitti'
+];
+
 // State Management
 let currentPage = 1;
-let currentQuery = 'wallpaper';
+let currentQuery = null;
 let isLoading = false;
 let hasMore = true;
 let scrollCount = 0;
 let loadMoreButton = null;
+
+// Get Random Categories Function
+function getRandomCategories(count = 3) {
+    const shuffled = [...CATEGORIES].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
 
 // Load More Button Implementation
 function createLoadMoreButton() {
@@ -124,6 +137,9 @@ function displayImages(photos, append = false) {
         fragment.appendChild(wrapper);
     });
     
+    if (!append) {
+        gallery.innerHTML = '';
+    }
     gallery.appendChild(fragment);
     initializeImageActions();
 }
@@ -156,16 +172,37 @@ async function fetchImages(query, page = 1, append = false) {
     if (loadMoreButton) loadMoreButton.style.display = 'none';
     
     try {
-        const response = await fetch(
-            `https://api.pexels.com/v1/search?query=${query}&per_page=40&page=${page}`,
-            {
-                headers: {
-                    Authorization: apiKey
-                }
-            }
-        );
+        let photos = [];
         
-        const data = await response.json();
+        // If query is an array, fetch images for each category
+        if (Array.isArray(query)) {
+            for (const category of query) {
+                const response = await fetch(
+                    `https://api.pexels.com/v1/search?query=${category}&per_page=15&page=${page}`,
+                    {
+                        headers: {
+                            Authorization: apiKey
+                        }
+                    }
+                );
+                const data = await response.json();
+                photos = [...photos, ...data.photos];
+            }
+            // Shuffle the combined results
+            photos.sort(() => 0.5 - Math.random());
+        } else {
+            // Original single category fetch
+            const response = await fetch(
+                `https://api.pexels.com/v1/search?query=${query}&per_page=40&page=${page}`,
+                {
+                    headers: {
+                        Authorization: apiKey
+                    }
+                }
+            );
+            const data = await response.json();
+            photos = data.photos;
+        }
         
         if (!append) {
             gallery.innerHTML = '';
@@ -173,13 +210,13 @@ async function fetchImages(query, page = 1, append = false) {
             window.addEventListener('scroll', handleScroll);
         }
         
-        if (data.photos.length === 0) {
+        if (photos.length === 0) {
             hasMore = false;
             loader.textContent = 'No more images to load';
             return;
         }
         
-        displayImages(data.photos, append);
+        displayImages(photos, append);
         
     } catch (error) {
         console.error('Error fetching images:', error);
@@ -268,11 +305,11 @@ document.querySelectorAll('.category-btn').forEach(button => {
     });
 });
 
-uploadBtn.addEventListener('click', () => {
+uploadBtn?.addEventListener('click', () => {
     uploadModal.style.display = 'block';
 });
 
-userGalleryBtn.addEventListener('click', () => {
+userGalleryBtn?.addEventListener('click', () => {
     galleryModal.style.display = 'block';
     loadUserSubmissions();
 });
@@ -291,7 +328,7 @@ window.addEventListener('click', (e) => {
     }
 });
 
-uploadForm.addEventListener('submit', async (e) => {
+uploadForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = new FormData(uploadForm);
@@ -316,4 +353,29 @@ uploadForm.addEventListener('submit', async (e) => {
 // Initialize
 createLoadMoreButton();
 window.addEventListener('scroll', handleScroll);
-fetchImages('wallpaper');
+
+// Load random categories on initial page load
+const randomCategories = getRandomCategories(3);
+currentQuery = randomCategories;
+fetchImages(randomCategories);
+
+//active buttons
+
+document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to the clicked button
+        button.classList.add('active');
+        
+        // Optional: You could filter or display wallpapers for the selected category here
+        console.log(`Selected category: ${button.dataset.category}`);
+      });
+    });
+  });
+
+

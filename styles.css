@@ -481,3 +481,12 @@ body {
         padding: 2rem 1rem;
     }
 }
+/*active*/
+
+  
+  .category-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+  }
+  
