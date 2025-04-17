@@ -24,6 +24,7 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     padding-top: 80px; /* Account for fixed navbar */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Navbar Styles */
@@ -1754,5 +1755,65 @@ body {
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px);
     }
+}
+
+.theme-btn {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.theme-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.theme-btn.active::after {
+    transform: translateX(-50%) scale(1);
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Theme-specific styles */
+.theme-light {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --primary-color: #4a90e2;
+    --secondary-color: #f5f5f5;
+}
+
+.theme-dark {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --primary-color: #6c63ff;
+    --secondary-color: #2d2d2d;
+}
+
+.theme-sky {
+    --bg-color: #87CEEB;
+    --text-color: #2C3E50;
+    --primary-color: #3498DB;
+    --secondary-color: #BDC3C7;
+}
+
+.theme-desert {
+    --bg-color: #F4A460;
+    --text-color: #8B4513;
+    --primary-color: #D2691E;
+    --secondary-color: #DEB887;
+}
+
+/* Theme transition */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
   
