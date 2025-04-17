@@ -1,4 +1,3 @@
-
 // API and DOM Elements
 const apiKey = '9v33NRbeI7fMxBXA84i2OX4naXhDVPHv0JC7CEQMdIFYdfJ6tcYv4Wps';
 const gallery = document.getElementById('imageGallery');
@@ -17,7 +16,7 @@ const uploadForm = document.getElementById('imageUploadForm');
 // Categories Configuration
 const CATEGORIES = [
     'cities', 'wallpapers', 'dark', 'mountains', 'beaches', 'food', 'animals', 'sports', 'cars', 'gaming',
-     'Berlin', 'malaysia', 'insects', 'futuristic', 'grafitti'
+     'Berlin', 'malaysia', 'insects', 'futuristic', 'grafitti', 'lakes'
 ];
 
 // State Management
@@ -125,11 +124,24 @@ function displayImages(photos, append = false) {
         wrapper.className = 'img-wrapper';
         
         wrapper.innerHTML = `
-            <img src="${photo.src.large}" alt="${photo.photographer}" loading="lazy">
-            <div class="img-overlay">
-                <div class="img-actions">
-                    <button class="action-btn like-btn" data-id="${photo.id}">❤</button>
-                    <button class="action-btn download-btn" data-url="${photo.src.original}" data-id="${photo.id}">⬇</button>
+            <div class="img-card">
+                <img src="${photo.src.large}" alt="${photo.photographer}" loading="lazy">
+                <div class="img-overlay">
+                    <div class="img-info">
+                        <p class="photographer">By ${photo.photographer}</p>
+                        <div class="img-actions">
+                            <button class="action-btn like-btn" data-id="${photo.id}" title="Like">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </button>
+                            <button class="action-btn download-btn" data-url="${photo.src.original}" data-id="${photo.id}" title="Download">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         `;
