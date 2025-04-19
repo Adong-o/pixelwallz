@@ -8,8 +8,35 @@ class ThemeManager {
             sky: null,
             desert: null
         };
+        this.loadingIndicator = this.createLoadingIndicator();
         this.initializeThemeButtons();
         this.loadSavedTheme();
+    }
+
+    createLoadingIndicator() {
+        const loader = document.createElement('div');
+        loader.className = 'theme-loader';
+        loader.innerHTML = `
+            <div class="theme-loader-content">
+                <div class="theme-loader-spinner"></div>
+                <p class="theme-loader-text">Loading theme...</p>
+            </div>
+        `;
+        document.body.appendChild(loader);
+        return loader;
+    }
+
+    showLoading(themeName) {
+        this.loadingIndicator.querySelector('.theme-loader-text').textContent = `Loading ${themeName} theme...`;
+        this.loadingIndicator.classList.add('active');
+        document.body.classList.add('theme-transitioning');
+    }
+
+    hideLoading() {
+        setTimeout(() => {
+            this.loadingIndicator.classList.remove('active');
+            document.body.classList.remove('theme-transitioning');
+        }, 500);
     }
 
     initializeThemeButtons() {
@@ -77,6 +104,8 @@ class ThemeManager {
     }
 
     async activateTheme(themeName) {
+        this.showLoading(themeName);
+
         // Clean up any active theme
         if (this.activeTheme) {
             if (this.themes[this.activeTheme]) {
@@ -85,12 +114,13 @@ class ThemeManager {
             document.body.classList.remove(`theme-${this.activeTheme}`);
         }
 
-        // If clicking the active theme, deactivate it and return to light/dark mode
+        // If clicking the active theme, deactivate it
         if (this.activeTheme === themeName) {
             this.activeTheme = null;
             this.applyLightDarkMode();
             localStorage.removeItem('imageoasis-theme');
             this.updateButtonStates();
+            this.hideLoading();
             return;
         }
 
@@ -105,15 +135,15 @@ class ThemeManager {
                 const module = await import(`./themes/${themeName}Theme.js`);
                 this.themes[themeName] = new module.default();
             }
-            this.themes[themeName].initialize();
+            await this.themes[themeName].initialize();
+            this.updateButtonStates();
         } catch (error) {
             console.error(`Failed to load ${themeName} theme:`, error);
             this.activeTheme = null;
             this.applyLightDarkMode();
+        } finally {
+            this.hideLoading();
         }
-
-        // Update button states
-        this.updateButtonStates();
     }
 
     updateButtonStates() {

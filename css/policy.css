@@ -1,0 +1,168 @@
+.policy-content {
+    max-width: 800px;
+    margin: 120px auto 60px;
+    padding: 0 20px;
+    color: var(--text-color);
+    position: relative;
+}
+
+.back-button {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+.back-button:hover {
+    transform: translateX(-3px);
+    background: var(--text-color);
+}
+
+.policy-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.last-updated {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.policy-content section {
+    margin-bottom: 2.5rem;
+    background: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.policy-content section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.policy-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.policy-content p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.policy-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.policy-content ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.5;
+}
+
+.policy-content ul li::before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.policy-content a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.policy-content a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .policy-content {
+        margin: 80px auto 40px;
+        padding: 0 15px;
+    }
+
+    .back-button {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+    }
+
+    .back-button:hover {
+        transform: translateX(-50%) translateY(-3px);
+    }
+
+    .policy-content h1 {
+        font-size: 2rem;
+    }
+
+    .policy-content section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .policy-content h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .policy-content {
+        margin: 60px auto 80px;
+        padding: 0 10px;
+    }
+
+    .policy-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .policy-content section {
+        padding: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .policy-content h2 {
+        font-size: 1.2rem;
+    }
+}
