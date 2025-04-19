@@ -362,9 +362,24 @@ uploadForm?.addEventListener('submit', async (e) => {
     }
 });
 
+// Initialize trending searches
+function initializeTrendingSearches() {
+    document.querySelectorAll('.trend-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+            const query = tag.textContent.trim();
+            document.getElementById('searchInput').value = query;
+            currentQuery = query;
+            currentPage = 1;
+            hasMore = true;
+            fetchImages(query);
+        });
+    });
+}
+
 // Initialize
 createLoadMoreButton();
 window.addEventListener('scroll', handleScroll);
+initializeTrendingSearches();
 
 // Load random categories on initial page load
 const randomCategories = getRandomCategories(3);

@@ -40,6 +40,12 @@ class ThemeManager {
     }
 
     initializeThemeButtons() {
+        // Default theme button
+        const defaultThemeBtn = document.getElementById('defaultThemeBtn');
+        if (defaultThemeBtn) {
+            defaultThemeBtn.addEventListener('click', () => this.resetToDefault());
+        }
+
         // Light/Dark mode toggle
         const lightThemeBtn = document.getElementById('lightThemeBtn');
         if (lightThemeBtn) {
@@ -86,21 +92,30 @@ class ThemeManager {
         // Remove theme classes
         document.body.classList.remove('theme-light', 'theme-dark');
         
-        // Apply new theme
+        // Apply new theme with transition
+        document.documentElement.style.setProperty('--transition-duration', '0.5s');
         document.body.classList.add(this.isDarkMode ? 'theme-dark' : 'theme-light');
         
-        // Update colors
+        // Update colors with modern, eye-catching palette
         if (this.isDarkMode) {
-            document.documentElement.style.setProperty('--bg-color', '#1a1a1a');
-            document.documentElement.style.setProperty('--text-color', '#ffffff');
-            document.documentElement.style.setProperty('--primary-color', '#6c63ff');
-            document.documentElement.style.setProperty('--secondary-color', '#2d2d2d');
+            document.documentElement.style.setProperty('--bg-color', '#121212');
+            document.documentElement.style.setProperty('--text-color', '#E0E0E0');
+            document.documentElement.style.setProperty('--primary-color', '#7C3AED');
+            document.documentElement.style.setProperty('--secondary-color', '#1E1E1E');
+            document.documentElement.style.setProperty('--accent-color', '#F472B6');
+            document.documentElement.style.setProperty('--hover-color', '#9D4EFF');
+            document.documentElement.style.setProperty('--card-bg', '#1E1E1E');
+            document.documentElement.style.setProperty('--border-color', '#2D2D2D');
         } else {
-        document.documentElement.style.setProperty('--bg-color', '#ffffff');
-        document.documentElement.style.setProperty('--text-color', '#333333');
-        document.documentElement.style.setProperty('--primary-color', '#4a90e2');
-        document.documentElement.style.setProperty('--secondary-color', '#f5f5f5');
-    }
+            document.documentElement.style.setProperty('--bg-color', '#F8FAFC');
+            document.documentElement.style.setProperty('--text-color', '#1E293B');
+            document.documentElement.style.setProperty('--primary-color', '#6366F1');
+            document.documentElement.style.setProperty('--secondary-color', '#F1F5F9');
+            document.documentElement.style.setProperty('--accent-color', '#EC4899');
+            document.documentElement.style.setProperty('--hover-color', '#4F46E5');
+            document.documentElement.style.setProperty('--card-bg', '#FFFFFF');
+            document.documentElement.style.setProperty('--border-color', '#E2E8F0');
+        }
     }
 
     async activateTheme(themeName) {
@@ -160,6 +175,26 @@ class ThemeManager {
             const lightDarkBtn = document.getElementById('lightThemeBtn');
             if (lightDarkBtn) lightDarkBtn.classList.add('active');
         }
+    }
+
+    resetToDefault() {
+        // Clean up any active theme
+        if (this.activeTheme && this.themes[this.activeTheme]) {
+            this.themes[this.activeTheme].cleanup();
+        }
+        
+        // Reset to default state
+        this.activeTheme = null;
+        document.body.classList.remove('theme-sky', 'theme-desert');
+        localStorage.removeItem('imageoasis-theme');
+        
+        // Apply default light/dark mode
+        this.applyLightDarkMode();
+        this.updateButtonStates();
+        
+        // Show brief loading indicator for smooth transition
+        this.showLoading('default');
+        setTimeout(() => this.hideLoading(), 500);
     }
 }
 
