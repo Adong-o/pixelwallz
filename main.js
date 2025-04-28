@@ -66,47 +66,64 @@ function handleScroll() {
 // Image Download Function
 async function downloadImage(url, id) {
     try {
+        const downloadModal = document.getElementById('downloadModal');
+        const progressBar = document.getElementById('progressBar');
+        const downloadStatus = document.getElementById('downloadStatus');
+        const downloadComplete = document.getElementById('downloadComplete');
+        
         downloadModal.style.display = 'flex';
         progressBar.style.width = '0%';
-        downloadStatus.textContent = '0%';
+        downloadStatus.textContent = 'Starting download...';
         downloadComplete.style.display = 'none';
 
-        const xhr = new XMLHttpRequest();
-        xhr.responseType = 'blob';
+        const response = await fetch(url);
+        const reader = response.body.getReader();
+        const contentLength = +response.headers.get('Content-Length');
+
+        let receivedLength = 0;
+        const chunks = [];
+
+        while(true) {
+            const {done, value} = await reader.read();
+            
+            if (done) {
+                break;
+            }
+            
+            chunks.push(value);
+            receivedLength += value.length;
+            
+            // Calculate and update progress
+            const progress = (receivedLength / contentLength) * 100;
+            progressBar.style.width = progress + '%';
+            downloadStatus.textContent = `Downloading... ${Math.round(progress)}%`;
+        }
+
+        // Combine all chunks into a single Uint8Array
+        const chunksAll = new Uint8Array(receivedLength);
+        let position = 0;
+        for(let chunk of chunks) {
+            chunksAll.set(chunk, position);
+            position += chunk.length;
+        }
         
-        xhr.onprogress = (event) => {
-            if (event.lengthComputable) {
-                const percentComplete = (event.loaded / event.total) * 100;
-                progressBar.style.width = percentComplete + '%';
-                downloadStatus.textContent = Math.round(percentComplete) + '%';
-            }
-        };
-
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                progressBar.style.width = '100%';
-                downloadStatus.textContent = 'Download Complete!';
-                downloadComplete.style.display = 'block';
-                
-                const blob = xhr.response;
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = `wallpaper-${id}.jpg`;
-                link.click();
-                URL.revokeObjectURL(link.href);
-            } else {
-                downloadStatus.textContent = 'Download failed. Please try again.';
-                downloadComplete.style.display = 'block';
-            }
-        };
-
-        xhr.onerror = () => {
-            downloadStatus.textContent = 'Download failed. Please try again.';
-            downloadComplete.style.display = 'block';
-        };
-
-        xhr.open('GET', url);
-        xhr.send();
+        // Create blob and trigger download
+        const blob = new Blob([chunksAll]);
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `wallpaper-${id}.jpg`;
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up
+        URL.revokeObjectURL(link.href);
+        
+        // Show completion
+        progressBar.style.width = '100%';
+        downloadStatus.textContent = 'Download Complete! Click Done to close.';
+        downloadComplete.style.display = 'block';
 
     } catch (error) {
         console.error('Error downloading image:', error);
@@ -125,7 +142,8 @@ function displayImages(photos, append = false) {
         
         wrapper.innerHTML = `
             <div class="img-card">
-                <img src="${photo.src.large}" alt="${photo.photographer}" loading="lazy">
+                <img src="${photo.src.large}" alt="${photo.photographer}" loading="lazy" 
+                     onerror="this.onerror=null; this.src='placeholder.jpg';">
                 <div class="img-overlay">
                     <div class="img-info">
                         <p class="photographer">By ${photo.photographer}</p>
@@ -145,6 +163,15 @@ function displayImages(photos, append = false) {
                 </div>
             </div>
         `;
+        
+        // Add loading class initially
+        wrapper.classList.add('loading');
+        
+        // Remove loading class when image is loaded
+        const img = wrapper.querySelector('img');
+        img.onload = () => {
+            wrapper.classList.remove('loading');
+        };
         
         fragment.appendChild(wrapper);
     });
@@ -289,11 +316,23 @@ async function loadUserSubmissions() {
 // Event Listeners
 downloadComplete.addEventListener('click', () => {
     downloadModal.style.display = 'none';
+    // Reset the modal state for next download
+    const progressBar = document.getElementById('progressBar');
+    const downloadStatus = document.getElementById('downloadStatus');
+    progressBar.style.width = '0%';
+    downloadStatus.textContent = 'Starting download...';
+    downloadComplete.style.display = 'none';
 });
 
 downloadModal.addEventListener('click', (e) => {
-    if (e.target === downloadModal) {
+    if (e.target === downloadModal && downloadComplete.style.display === 'block') {
         downloadModal.style.display = 'none';
+        // Reset the modal state for next download
+        const progressBar = document.getElementById('progressBar');
+        const downloadStatus = document.getElementById('downloadStatus');
+        progressBar.style.width = '0%';
+        downloadStatus.textContent = 'Starting download...';
+        downloadComplete.style.display = 'none';
     }
 });
 
@@ -404,5 +443,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+// Add email functionality for advertising
+document.addEventListener('DOMContentLoaded', () => {
+    const advertiseButtons = document.querySelectorAll('.ad-cta-button');
+    advertiseButtons.forEach(button => {
+        if (button.textContent.includes('Advertise With Us')) {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const emailSubject = encodeURIComponent('Advertise with ImageOasis');
+                const emailBody = encodeURIComponent('I am interested in advertising on ImageOasis. Please provide more information about advertising opportunities.');
+                window.location.href = `mailto:adongojakes@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+            });
+        }
+    });
+});
 
 
