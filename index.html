@@ -79,53 +79,131 @@
                     Submit Image
                 </button>
             </div>
-        </div>
+            </div>
     </nav>
 
-    <section class="categories-wrapper">
-            <div class="categories">
-            <button class="category-btn active" data-category="minimal">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v18H3V3m15 15V6H6v12h12z"/></svg>
-                Minimal
-            </button>
-            <button class="category-btn" data-category="dark">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-                Dark
-            </button>
-            <button class="category-btn" data-category="nature">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M14 6l-3.75 5 2.85 3.8-1.6 1.2L7 10l-6 8h22L14 6z"/></svg>
-                Nature
-            </button>
-            <button class="category-btn" data-category="abstract">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 12a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM3 3h18v18H3V3z"/></svg>
-                Abstract
-            </button>
-            <button class="category-btn" data-category="space">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
-                Space
-            </button>
-            <button class="category-btn" data-category="aesthetic">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-3a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>
-                Aesthetic
-            </button>
-            <button class="category-btn" data-category="cyberpunk">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                Cyberpunk
-            </button>
-            <button class="category-btn" data-category="gaming">
-                <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-                Gaming
-            </button>
-            </div>
-        </section>
-
-        <section class="gallery-container" id="imageGallery">
-            <!-- Images will be loaded here -->
-        </section>
-
-        <div class="loader" id="loader" style="display: none;">
-            Loading more images...
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <img src="https://source.unsplash.com/random/1920x1080/?nature,minimal" alt="Hero Background" class="hero-img">
         </div>
+        
+        <div class="hero-content">
+            <h1>Discover Stunning Wallpapers</h1>
+            <p>High-quality wallpapers for desktop and mobile. Free for personal and commercial use.</p>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="nature">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M14 6l-3.75 5 2.85 3.8-1.6 1.2L7 10l-6 8h22L14 6z"/></svg>
+                    Nature
+                </button>
+                <button class="category-btn" data-category="dark">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                    Dark
+                </button>
+                <button class="category-btn" data-category="minimal">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v18H3V3m15 15V6H6v12h12z"/></svg>
+                    Minimal
+                </button>
+                <button class="category-btn" data-category="abstract">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 12a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM3 3h18v18H3V3z"/></svg>
+                    Abstract
+                </button>
+                <button class="category-btn" data-category="space">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+                    Space
+                </button>
+                <button class="category-btn" data-category="aesthetic">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-3a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>
+                    Aesthetic
+                </button>
+                <button class="category-btn" data-category="anime">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                    Anime
+                </button>
+                <button class="category-btn" data-category="gaming">
+                    <svg class="category-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                    Gaming
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-container" id="imageGallery">
+        <!-- Images will be loaded here -->
+    </section>
+
+    <!-- Image Details Modal -->
+    <div id="imageDetailsModal" class="modal">
+        <div class="modal-content image-details-modal">
+            <button class="close-modal">&times;</button>
+            <div class="image-details-container">
+                <div class="image-preview">
+                    <img src="" alt="Image Preview" class="zoomed-image">
+                </div>
+                <div class="image-info">
+                    <h3 class="image-title"></h3>
+                    <div class="image-meta">
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <span class="photographer-name"></span>
+                        </div>
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                            </svg>
+                            <span class="image-dimensions"></span>
+                        </div>
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                            </svg>
+                            <span class="image-category"></span>
+                        </div>
+                    </div>
+                    <div class="image-actions">
+                        <button class="action-btn download-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download
+                        </button>
+                        <button class="action-btn like-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                            Like
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Creator Images Popup Modal -->
+    <div id="creatorModal" class="modal">
+        <div class="modal-content creator-modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="creator-header">
+                <div class="creator-info">
+                    <img src="" alt="Creator Avatar" class="creator-avatar">
+                    <div class="creator-details">
+                        <h3 class="creator-name"></h3>
+                        <p class="creator-bio"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="creator-gallery">
+                <!-- Creator's images will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="loader" id="loader" style="display: none;">
+        Loading more images...
+    </div>
 
     <footer class="footer">
         <div class="footer-content">
@@ -138,7 +216,6 @@
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
                     </a>
-                    <!--
                     <a href="#" class="social-link" title="Join our Discord Community">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
@@ -152,7 +229,7 @@
                     <a href="#" class="social-link" title="Subscribe to our YouTube">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>-->
+                        </svg>
                     </a>
                 </div>
             </div>

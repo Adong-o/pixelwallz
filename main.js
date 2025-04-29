@@ -109,21 +109,21 @@ async function downloadImage(url, id) {
         
         // Create blob and trigger download
         const blob = new Blob([chunksAll]);
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `wallpaper-${id}.jpg`;
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `wallpaper-${id}.jpg`;
         
         document.body.appendChild(link);
-        link.click();
+                link.click();
         document.body.removeChild(link);
         
         // Clean up
-        URL.revokeObjectURL(link.href);
-        
+                URL.revokeObjectURL(link.href);
+
         // Show completion
         progressBar.style.width = '100%';
         downloadStatus.textContent = 'Download Complete! Click Done to close.';
-        downloadComplete.style.display = 'block';
+            downloadComplete.style.display = 'block';
 
     } catch (error) {
         console.error('Error downloading image:', error);
@@ -144,10 +144,10 @@ function displayImages(photos, append = false) {
             <div class="img-card">
                 <img src="${photo.src.large}" alt="${photo.photographer}" loading="lazy" 
                      onerror="this.onerror=null; this.src='placeholder.jpg';">
-                <div class="img-overlay">
+            <div class="img-overlay">
                     <div class="img-info">
                         <p class="photographer">By ${photo.photographer}</p>
-                        <div class="img-actions">
+                <div class="img-actions">
                             <button class="action-btn like-btn" data-id="${photo.id}" title="Like">
                                 <svg viewBox="0 0 24 24" width="24" height="24">
                                     <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -455,6 +455,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 const emailBody = encodeURIComponent('I am interested in advertising on ImageOasis. Please provide more information about advertising opportunities.');
                 window.location.href = `mailto:adongojakes@gmail.com?subject=${emailSubject}&body=${emailBody}`;
             });
+        }
+    });
+  });
+
+// Hero Section Functionality
+function refreshHeroBackground() {
+    const heroImg = document.querySelector('.hero-img');
+    const categories = ['nature', 'minimal', 'abstract', 'space', 'dark'];
+    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+    heroImg.src = `https://source.unsplash.com/random/1920x1080/?${randomCategory}`;
+}
+
+// Refresh background every 30 seconds
+setInterval(refreshHeroBackground, 30000);
+
+// Handle trend tag clicks
+document.querySelectorAll('.trend-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+        const category = tag.dataset.category;
+        const heroImg = document.querySelector('.hero-img');
+        heroImg.src = `https://source.unsplash.com/random/1920x1080/?${category}`;
+        
+        // Update active category
+        document.querySelectorAll('.trend-tag').forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+        
+        // Trigger category filter
+        const categoryBtn = document.querySelector(`.category-btn[data-category="${category}"]`);
+        if (categoryBtn) {
+            categoryBtn.click();
         }
     });
 });
