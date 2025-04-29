@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <url>
+        <loc>https://imageoasis.art/categories/nature</loc>
+        <image:image>
+            <image:loc>https://imageoasis.art/images/nature/mountain-landscape-4k.jpg</image:loc>
+            <image:title>Mountain Landscape 4K Wallpaper</image:title>
+            <image:caption>Stunning mountain landscape with snow-capped peaks at sunset</image:caption>
+            <image:geo_location>Swiss Alps</image:geo_location>
+            <image:license>https://imageoasis.art/license</image:license>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://imageoasis.art/categories/minimal</loc>
+        <image:image>
+            <image:loc>https://imageoasis.art/images/minimal/geometric-pattern-4k.jpg</image:loc>
+            <image:title>Geometric Pattern 4K Wallpaper</image:title>
+            <image:caption>Modern minimal geometric pattern in soft pastel colors</image:caption>
+            <image:license>https://imageoasis.art/license</image:license>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://imageoasis.art/categories/abstract</loc>
+        <image:image>
+            <image:loc>https://imageoasis.art/images/abstract/fluid-art-4k.jpg</image:loc>
+            <image:title>Fluid Art Abstract 4K Wallpaper</image:title>
+            <image:caption>Colorful fluid art abstract background with flowing patterns</image:caption>
+            <image:license>https://imageoasis.art/license</image:license>
+        </image:image>
+    </url>
+    <!-- Add more image entries for each category -->
+</urlset> 

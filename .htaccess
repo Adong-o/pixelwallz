@@ -1,0 +1,110 @@
+# Enable Apache Rewrite Engine
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove www prefix
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Custom error pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+ErrorDocument 403 /403.html
+
+# Prevent directory browsing
+Options -Indexes
+
+# Protect against XSS attacks
+Header set X-XSS-Protection "1; mode=block"
+
+# Enable CORS for specific domains
+Header set Access-Control-Allow-Origin "https://imageoasis.art"
+
+# Security Headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+# Enable Keep-Alive
+Header set Connection keep-alive
+
+# Cache Control for different file types
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|ico)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+<FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+<FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=7200, must-revalidate"
+</FilesMatch>
+
+# Prevent access to sensitive files
+<FilesMatch "^(\.htaccess|\.htpasswd|\.git|\.env|composer\.json|package\.json)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Enable compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json
+    
+    # Remove browser bugs
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# URL Rewrites for clean URLs
+RewriteRule ^category/([^/]+)/?$ categories/$1.html [L]
+RewriteRule ^wallpaper/([^/]+)/?$ wallpaper.php?id=$1 [L]
+
+# Prevent hotlinking
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?imageoasis\.art [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [NC,F,L]
+
+# Block bad bots
+RewriteCond %{HTTP_USER_AGENT} ^(Wget|Curl|WebZIP|HTTrack|WebCopier) [NC]
+RewriteRule .* - [F,L]
+
+# Redirect old URLs to new ones (example)
+Redirect 301 /old-category /categories/nature
+
+# Set default character set
+AddDefaultCharset UTF-8
+
+# Set server timezone
+SetEnv TZ America/New_York
+
+# Enable HTTP/2 Server Push
+<IfModule mod_http2.c>
+    H2Push on
+    H2PushResource add /css/styles.css
+    H2PushResource add /js/main.js
+</IfModule>
+
+# Handle WebP images if supported
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{REQUEST_FILENAME} (.*)\.(jpe?g|png)$
+    RewriteCond %{REQUEST_FILENAME}\.webp -f
+    RewriteRule ^(.+)\.(jpe?g|png)$ $1.webp [T=image/webp,L]
+</IfModule>
+
+# PHP Settings
+php_value upload_max_filesize 20M
+php_value post_max_size 20M
+php_value max_execution_time 300
+php_value max_input_time 300
+
+# Security: PHP error handling
+php_flag display_errors off
+php_value error_reporting E_ALL & ~E_NOTICE 

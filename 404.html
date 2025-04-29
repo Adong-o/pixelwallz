@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - ImageOasis.Art</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #ffffff;
+            text-align: center;
+        }
+        .error-container {
+            max-width: 600px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: #4a90e2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        .home-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            background: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        .home-button:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .suggestions {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        .suggestions h3 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+        .suggestions li {
+            margin: 0.5rem 0;
+        }
+        .suggestions a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .suggestions a:hover {
+            color: #4a90e2;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>404</h1>
+        <p>Oops! The wallpaper you're looking for seems to have vanished into the digital void.</p>
+        <p>Don't worry though, we have plenty of other amazing wallpapers waiting for you!</p>
+        
+        <div class="suggestions">
+            <h3>You might want to try:</h3>
+            <ul>
+                <li><a href="/categories/nature">Nature Wallpapers</a></li>
+                <li><a href="/categories/minimal">Minimal Designs</a></li>
+                <li><a href="/categories/abstract">Abstract Art</a></li>
+                <li><a href="/categories/dark">Dark Themes</a></li>
+            </ul>
+        </div>
+        
+        <a href="/" class="home-button">Return to Homepage</a>
+    </div>
+</body>
+</html> 

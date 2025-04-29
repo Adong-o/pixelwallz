@@ -1,69 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Homepage -->
     <url>
         <loc>https://imageoasis.art/</loc>
-        <lastmod>2024-03-19</lastmod>
+        <lastmod>2024-03-20</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
+
+    <!-- Categories -->
+    <url>
+        <loc>https://imageoasis.art/categories</loc>
+        <lastmod>2024-03-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Search -->
+    <url>
+        <loc>https://imageoasis.art/search</loc>
+        <lastmod>2024-03-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Example Category Pages -->
     <url>
         <loc>https://imageoasis.art/categories/nature</loc>
         <lastmod>2024-03-20</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>daily</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://imageoasis.art/images/nature/featured.jpg</image:loc>
+            <image:title>Nature Wallpapers</image:title>
+            <image:caption>Beautiful nature wallpapers for your desktop</image:caption>
+        </image:image>
     </url>
+
     <url>
         <loc>https://imageoasis.art/categories/abstract</loc>
         <lastmod>2024-03-20</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>daily</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://imageoasis.art/images/abstract/featured.jpg</image:loc>
+            <image:title>Abstract Wallpapers</image:title>
+            <image:caption>Creative abstract wallpapers for your desktop</image:caption>
+        </image:image>
     </url>
+
+    <!-- Error Pages -->
     <url>
-        <loc>https://imageoasis.art/categories/aesthetic</loc>
-        <lastmod>2024-03-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://imageoasis.art/categories/cyberpunk</loc>
-        <lastmod>2024-03-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://imageoasis.art/categories/gaming</loc>
-        <lastmod>2024-03-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://imageoasis.art/categories/minimalist</loc>
-        <lastmod>2024-03-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://imageoasis.art/about</loc>
+        <loc>https://imageoasis.art/404.html</loc>
         <lastmod>2024-03-20</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.1</priority>
     </url>
-    <url>
-        <loc>https://imageoasis.art/contact</loc>
-        <lastmod>2024-03-20</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://imageoasis.art/terms-of-service.html</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://imageoasis.art/privacy-policy.html</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
+
 </urlset>
