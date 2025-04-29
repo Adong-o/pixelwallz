@@ -97,7 +97,7 @@ async function downloadImage(url, id) {
             const progress = (receivedLength / contentLength) * 100;
             progressBar.style.width = progress + '%';
             downloadStatus.textContent = `Downloading... ${Math.round(progress)}%`;
-        }
+            }
 
         // Combine all chunks into a single Uint8Array
         const chunksAll = new Uint8Array(receivedLength);

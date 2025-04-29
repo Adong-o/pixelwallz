@@ -1795,7 +1795,7 @@ body {
     .creator-info {
         flex-direction: column;
         text-align: center;
-    }
+}
 
     .creator-gallery {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -1993,14 +1993,14 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
+    }
 
 .ad-benefits {
     display: flex;
-    flex-direction: column;
+        flex-direction: column;
     gap: 0.5rem;
     margin: 0.5rem 0;
-}
+    }
 
 .ad-benefits p {
     font-size: 0.9rem;
@@ -2050,11 +2050,11 @@ body {
     .ad-spot h3 {
         font-size: 1.1rem;
     }
-    
+
     .ad-spot p {
         font-size: 0.95rem;
     }
-    
+
     .ad-features span {
         font-size: 0.85rem;
         padding: 0.4rem 0.8rem;
@@ -2064,5 +2064,5 @@ body {
         padding: 0.875rem 1.25rem;
         font-size: 0.95rem;
     }
-}
+  }
   

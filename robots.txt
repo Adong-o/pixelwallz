@@ -1,1 +1,17 @@
- 
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+Sitemap: https://imageoasis.art/sitemap.xml
+
+# Crawl-delay: 10
+
+# Allow Google Image crawler full access
+User-agent: Googlebot-Image
+Allow: /
+
+# Allow Google Mobile crawler
+User-agent: Googlebot-Mobile
+Allow: / 
