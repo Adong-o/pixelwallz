@@ -1,90 +1,34 @@
-# ImageOasis.Art Robots.txt
-# Updated: 2024-03-19
-
+# robots.txt for ImageOasis.Art
+# Allow all reputable crawlers full access to render the site.
 User-agent: *
 Allow: /
-Allow: /images/
-Allow: /categories/
-Allow: /search
-Allow: /sitemap.xml
-
-# Prevent access to admin areas
 Disallow: /admin/
 Disallow: /login/
 Disallow: /private/
-Disallow: /includes/
-Disallow: /cgi-bin/
-Disallow: /tmp/
 
-# Prevent indexing of search result pages
+# Prevent indexing of low-value pages like search results.
 Disallow: /*?q=
 Disallow: /*?s=
 Disallow: /*?search=
-
-# Prevent duplicate content indexing
 Disallow: /*?sort=
 Disallow: /*?filter=
 Disallow: /*?page=
 
-# Block specific file types
-Disallow: /*.php$
-Disallow: /*.json$
-Disallow: /*.xml$
-Disallow: /*.txt$
-
-# Allow specific bots with custom rules
+# Specific instructions for Google's bots
 User-agent: Googlebot
-Allow: /*.js$
-Allow: /*.css$
-Crawl-delay: 1
+Allow: /
 
-User-agent: Googlebot-Image
-Allow: /images/
-Allow: /thumbnails/
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.gif$
-Allow: /*.png$
-Allow: /*.webp$
-
-# Sitemap location
-Sitemap: https://imageoasis.art/sitemap.xml
-
-# Allow image crawling
+# Allow Google's Image bot to crawl all images
 User-agent: Googlebot-Image
 Allow: /
-Allow: /images/
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.png$
-Allow: /*.gif$
-Allow: /*.webp$
 
-# Allow mobile crawler
-User-agent: Googlebot-Mobile
-Allow: /
-Priority: 1.0
-
-# Bing Bot
+# Specific instructions for Bing's bots
 User-agent: Bingbot
 Allow: /
-Priority: 0.8
 
-# DuckDuckGo Bot
+# Specific instructions for DuckDuckGo's bot
 User-agent: DuckDuckBot
 Allow: /
-Priority: 0.8
 
-# Image Sitemap
-Sitemap: https://imageoasis.art/image-sitemap.xml
-
-# Category Sitemap
-Sitemap: https://imageoasis.art/category-sitemap.xml
-
-# Crawl-delay: 10
-
-# Host
-Host: imageoasis.art
-
-# Clean Parameters
-Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term 
+# Sitemap locations - ensure these files are up-to-date
+Sitemap: https://imageoasis.art/sitemap.xml
