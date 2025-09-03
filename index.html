@@ -32,82 +32,8 @@
     <!-- Favicon -->
     <link rel="icon" href="./image-2974618.jpg" type="image/x-icon">
 
-    <!-- SubSphere Analytics -->
-<script async>
-    (function() {
-      const trackingId = 'SS_1756902143365_k2cl1n2kg';
-      const apiUrl = 'https://tcizbzrruxzlledsfmyz.supabase.co/functions/v1/track-visit';
-      
-      function trackPageView() {
-        const data = {
-          tracking_id: trackingId,
-          url: window.location.href,
-          referrer: document.referrer,
-          user_agent: navigator.userAgent,
-          timestamp: new Date().toISOString(),
-          screen_resolution: window.screen.width + 'x' + window.screen.height,
-          viewport_size: window.innerWidth + 'x' + window.innerHeight
-        };
-        
-        fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        }).catch(err => console.debug('Analytics:', err));
-      }
-      
-      // Track initial page view
-      trackPageView();
-      
-      // Track navigation for SPAs
-      let lastUrl = window.location.href;
-      new MutationObserver(() => {
-        const currentUrl = window.location.href;
-        if (currentUrl !== lastUrl) {
-          lastUrl = currentUrl;
-          trackPageView();
-        }
-      }).observe(document.body, { childList: true, subtree: true });
-    })();
-    </script><!-- SubSphere Analytics -->
-<script async>
-(function() {
-  const trackingId = 'SS_1756902143365_k2cl1n2kg';
-  const apiUrl = 'https://tcizbzrruxzlledsfmyz.supabase.co/functions/v1/track-visit';
-  
-  function trackPageView() {
-    const data = {
-      tracking_id: trackingId,
-      url: window.location.href,
-      referrer: document.referrer,
-      user_agent: navigator.userAgent,
-      timestamp: new Date().toISOString(),
-      screen_resolution: window.screen.width + 'x' + window.screen.height,
-      viewport_size: window.innerWidth + 'x' + window.innerHeight
-    };
     
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).catch(err => console.debug('Analytics:', err));
-  }
-  
-  // Track initial page view
-  trackPageView();
-  
-  // Track navigation for SPAs
-  let lastUrl = window.location.href;
-  new MutationObserver(() => {
-    const currentUrl = window.location.href;
-    if (currentUrl !== lastUrl) {
-      lastUrl = currentUrl;
-      trackPageView();
-    }
-  }).observe(document.body, { childList: true, subtree: true });
-})();
-</script>
-
+    
     <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
